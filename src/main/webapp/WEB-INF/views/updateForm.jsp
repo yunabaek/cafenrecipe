@@ -54,29 +54,29 @@
            </nav>
         </div>
      </div>
-     	<h2>레시피 상세보기</h2>
-		<table>
-			<tr>
-				<th>글번호</th>
-				<td id = "smallContextBox">${info.idx}</td>
-			</tr>
-			<tr>
-				<th>제목</th>
-				<td id = "smallContextBox">${info.subject}</td>
-			</tr>
-			<tr>
-				<th>작성자</th>
-				<td id = "smallContextBox">${info.name}</td>
-			</tr>
-			<tr>
-				<th>내용</th>
-				<td id = "bicContextBox">${info.content}</td>
-			</tr>
-		</table><br/>
-			<input type="button" onclick="location.href='./list'" value="리스트"/>
-			<input type="button" onclick="location.href='./updateForm?idx=${info.idx}'" value="수정"/>
-			<input type="button" onclick="del()" value="삭제"/>	
-      		<br/>
+	<h2>레시피 수정하기</h2>
+		<form action="update" method="post">		
+			<table>
+				<tr>
+				    <th>제목</th>
+					<td>
+					<input type="hidden" name="idx" value="${info.idx}"/>
+					<input type = "hidden" name="subject" id = "smallContextBox">${info.subject}
+					</td>
+				</tr>			
+				<tr>
+				    <th>작성자</th>
+					<td>
+					<input type = "hidden" name="name" id = "smallContextBox">${info.name}</td>
+				</tr>
+				<tr>
+					<th>내용</th>
+					<td><textarea name="content" id = "bicContextBox">${info.content}</textarea></td>
+				</tr>
+			</table><br/>
+				<input type="button" onclick="location.href='./list'" value="리스트"/>
+				<input type="submit" value="저장"/>
+		</form>	
       <!-- footer section start -->
       <div class="footer_section layout_padding">
          <div class="container">
@@ -137,13 +137,6 @@
       <script src="resources/js/custom.js"></script>  
 </body>
 <script>
-function del(){
-	var yn = confirm("정말 이 글을 삭제 하시겠습니까?");
-	
-	if(yn){
-		location.href='./delete?idx=${info.idx}';
-	}
-	
-}
+
 </script>
 </html>

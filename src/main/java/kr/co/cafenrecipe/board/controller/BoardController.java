@@ -32,14 +32,14 @@ public class BoardController {
 		return boardservice.list();
 	}
 	
-	/*글쓰기페이지 이동*/
+	/*글쓰기 페이지 이동*/
 	@RequestMapping(value = "/writeForm", method = RequestMethod.GET)
 	public String writeForm(Model model) {		
 		logger.info("writeForm 이동");
 		return "writeForm";
 	}
 	
-	/*글쓰기*/
+	/*글 쓰기*/
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
 	public String write(Model model, @RequestParam HashMap<String, String> params) {		
 		logger.info("write : {}",params);
@@ -47,7 +47,7 @@ public class BoardController {
 		return "redirect:/list";
 	}	
 	
-	/*상세페이지*/
+	/*글 상세*/
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
 	public String writeForm(Model model, @RequestParam String idx) {		
 		logger.info("detail : {}",idx);
@@ -59,7 +59,7 @@ public class BoardController {
 		return "detail";
 	}
 	
-	/*삭제*/
+	/*글 삭제*/
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public String delete(Model model, @RequestParam String idx) {		
 		logger.info("삭제 : {}",idx);		
@@ -67,5 +67,22 @@ public class BoardController {
 		return "redirect:/list";
 	}
 	
+	/*글 수정 페이지로 이동*/
+	@RequestMapping(value = "/updateForm", method = RequestMethod.GET)
+	public String updateForm(Model model, @RequestParam String idx) {		
+		logger.info("updateForm 요청 : {}",idx);		
+		BoardDTO dto = boardservice.detail(idx,"update");
+		model.addAttribute("info", dto);		
+		return "updateForm";
+	}
+	
+	/*글 수정*/
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String update(Model model, 
+			@RequestParam HashMap<String, String> params) {		
+		logger.info("update 요청 : {}",params);
+		boardservice.update(params);
+		return "redirect:/detail?idx="+params.get("idx");
+	}
 }	
 	

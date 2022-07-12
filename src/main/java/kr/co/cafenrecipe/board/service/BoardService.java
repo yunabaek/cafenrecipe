@@ -19,6 +19,7 @@ public class BoardService {
 	
 	@Autowired BoardDAO boarddao;
 	
+	/*리스트*/
 	public ModelAndView list() {
 		logger.info("Board service 도착");
 		ModelAndView mav = new ModelAndView();
@@ -29,25 +30,31 @@ public class BoardService {
 		mav.setViewName("list");
 		return mav;
 	}
-
+	/*글 쓰기*/
 	public void write(HashMap<String, String> params) {
 		int row = boarddao.write(params);
 		logger.info(" 입력된 건수 : {}",row);		
 	}
-
+	
+	/*글 상세보기*/
 	public BoardDTO detail(String idx, String method) {		
 		if(method.equals("detail")) {
 			boarddao.upHit(idx);					
 		}		
 		return boarddao.detail(idx);
 	}
-
+	
+	/*글 삭제*/
 	public void delete(String idx) {		
 		int success = boarddao.delete(idx);
 		logger.info("삭제 완료 여부 : "+success);
 	}
 	
-	
+	/*글 수정*/
+	public void update(HashMap<String, String> params) {
+		int row = boarddao.update(params);		
+		logger.info("수정 성공여부 : {}",row);
+	}
 	
 	
 	

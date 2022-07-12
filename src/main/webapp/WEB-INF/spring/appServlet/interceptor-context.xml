@@ -10,7 +10,6 @@
 			<mvc:mapping path="/list"/>
 			<mvc:mapping path="/detail"/>
 			<mvc:mapping path="/delete"/>
-			<mvc:mapping path="/updateForm"/>
 			<mvc:mapping path="/writeForm"/>
 			<bean class="kr.co.cafenrecipe.utils.LoginInterceptor"/>
 		</mvc:interceptor>

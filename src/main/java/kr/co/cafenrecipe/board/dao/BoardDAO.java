@@ -17,7 +17,7 @@ public interface BoardDAO {
 
 	int delete(String idx);
 
-
+	int update(HashMap<String, String> params);
 
 }
 

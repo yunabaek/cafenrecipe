@@ -28,4 +28,9 @@
 		DELETE FROM bbs WHERE idx = #{param1}
 	</delete>
 
+	<update id="update" parameterType="hashmap">
+		UPDATE bbs SET
+		content = #{content}
+		WHERE idx = #{idx}
+	</update>
 </mapper>
